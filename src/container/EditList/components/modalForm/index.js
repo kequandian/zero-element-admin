@@ -23,7 +23,7 @@ export default function Index(props) {
 
     const { field, type, cbChange } = props;
     const { id } = qs.parse(location.search.replace('?', ''));
-    const getFieldApi = `/api/lc/lowMainPage/lowMainPages/${id}`;
+    const getFieldApi = `/api/pageconfig/lowMainPage/lowMainPages/${id}`;
     const [loading, setLoading] = useState(false);
     const [fields, setFields] = useState([]);
     

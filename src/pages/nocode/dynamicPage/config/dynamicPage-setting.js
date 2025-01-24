@@ -18,11 +18,11 @@ export const setting = {
     "new": "新增动态页面",
     "edit": "编辑动态页面"
   },
-  "listAPI": "/api/lc/lowMainPage/lowMainPages",
-  "createAPI": "/api/lc/lowMainPage/lowMainPages",
-  "getAPI": "/api/lc/lowMainPage/lowMainPages/[id]",
-  "updateAPI": "/api/lc/lowMainPage/lowMainPages/[id]",
-  "deleteAPI": "/api/lc/lowMainPage/lowMainPages/(id)",
+  "listAPI": "/api/pageconfig/lowMainPage/lowMainPages",
+  "createAPI": "/api/pageconfig/lowMainPage/lowMainPages",
+  "getAPI": "/api/pageconfig/lowMainPage/lowMainPages/[id]",
+  "updateAPI": "/api/pageconfig/lowMainPage/lowMainPages/[id]",
+  "deleteAPI": "/api/pageconfig/lowMainPage/lowMainPages/(id)",
   "columns": 1,
   "createFields": [
     { "label":"页面名称","field":"pageName","type":"input","rules": [
@@ -252,7 +252,7 @@ export const setting = {
         "modalTitle": "添加",
         "modalWidth": 600,
         "api":{
-          "createAPI":"/api/lc/lowMainPage/lowMainPages"
+          "createAPI":"/api/pageconfig/lowMainPage/lowMainPages"
         },
         "fields": [
           { "label": "页面名称", "field": "pageName", "defaultValue": "", "placeholder": "请输入页面名称,必须为英文" },
@@ -356,8 +356,8 @@ export const setting = {
             component: 'DynamicPageForm',
             config: {
               API: {
-                "getAPI":"/api/lc/lowMainPage/lowMainPages/(id)",
-                "updateAPI":"/api/lc/lowMainPage/lowMainPages/(id)"
+                "getAPI":"/api/pageconfig/lowMainPage/lowMainPages/(id)",
+                "updateAPI":"/api/pageconfig/lowMainPage/lowMainPages/(id)"
               },
               "fields": [
                 { "label": "页面名称", "field": "pageName", "defaultValue": "", "placeholder": "请输入页面名称,必须为英文" },
@@ -473,7 +473,7 @@ export const setting = {
       "type": "downloadPage",
       "options": {
         "outside": false,
-        "API": "/api/lc/lowMainPage/lowMainPages/(id)",
+        "API": "/api/pageconfig/lowMainPage/lowMainPages/(id)",
       }
     },
     
@@ -489,7 +489,7 @@ export const setting = {
             "component": 'DynamicPageShowConfig',
             "config": {
               "API":{
-                "getAPI":"/api/lc/lowMainPage/lowMainPages/(id)",
+                "getAPI":"/api/pageconfig/lowMainPage/lowMainPages/(id)",
               }
             }
           }

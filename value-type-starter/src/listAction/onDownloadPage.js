@@ -64,7 +64,7 @@ export default function onRequest(props) {
   function handleDownloadPage(data) {
     const cutString = data.createAPI
     const fileName = cutString.substring(cutString.lastIndexOf('/')+1, cutString.length)
-    const apiUrl = `${getEndpoint()}/api/lc/lowMainPage/pageConfig/${fileName}`; //转换地址
+    const apiUrl = `${getEndpoint()}/api/pageconfig/lowMainPage/pageConfig/${fileName}`; //转换地址
     let options = {
       method: "post"
     }

@@ -13,7 +13,7 @@ export const fieldsConfig = [
         "field": "fieldBinding",
         "type": "fetchSelect",
         "options": {
-            "API": "/api/lc/lowMainPage/lowMainPages/(id)",
+            "API": "/api/pageconfig/lowMainPage/lowMainPages/(id)",
             "label": "fieldItemName",
             "value": "fieldItemName",
             "dataField": "data.lowFieldss"
@@ -604,7 +604,7 @@ export const ActionsConfig = [
             { 
                 "label": "请求参数", "field": "requestOptions", "type": "modalFrom",
                 "options": {
-                    "API": "/api/lc/lowMainPage/lowMainPages/(id)",
+                    "API": "/api/pageconfig/lowMainPage/lowMainPages/(id)",
                     "label": "fieldItemName",
                     "value": "fieldItemName",
                     "dataField": "data.lowFieldss"

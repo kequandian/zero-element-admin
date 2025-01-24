@@ -26,7 +26,7 @@ let getMainPage = async(ctx) =>{
 
     // console.log(modal)
     let res = await new Promise((resolve,reject)=>{
-        axios.get(config.globalConfig.endpoint+"/api/lc/lowMainPage/lowMainPages"+query)
+        axios.get(config.globalConfig.endpoint+"/api/pageconfig/lowMainPage/lowMainPages"+query)
         .then((response)=>{
             let returnData = response.data;
             if(response.data.lowActionss!==[]){

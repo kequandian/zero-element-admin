@@ -1,5 +1,5 @@
 export default {
-  'GET /api/config': {
+  'GET /api/adm/config': {
     "status": 1,
     "data": {
       "pageName": {

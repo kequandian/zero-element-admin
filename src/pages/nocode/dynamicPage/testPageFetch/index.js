@@ -69,7 +69,7 @@ export default function Default() {
     const apiUrl = `${endpoint}/toconfig`; //转换地址
     const pageUrl = `${endpoint}${pageEndpoint}/${id}`;
     // const pageUrl = `${endpoint}${pageEndpoint}`;//页面api获取地址
-    const defaultUrl = `/api/config`;//默认配置获取地址
+    const defaultUrl = `/api/adm/config`;//默认配置获取地址
     promiseAjax(pageUrl, {/* id:id */ })
       .then(resp => {
         if (resp && resp.code === 200) {

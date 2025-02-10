@@ -13,7 +13,7 @@ module.exports = [
         {
           label: '证件类型', field: 'IDType', type: 'select-field',
           options: {
-            API: '/api/config/fields',
+            API: '/api/adm/config/fields',
             field: 'idType',
             label: 'value',
             value: 'name',

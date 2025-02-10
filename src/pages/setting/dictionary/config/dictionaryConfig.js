@@ -8,13 +8,13 @@ module.exports = {
       component: 'Dictionary',
       config: {
         API: {
-          listAPI: '/api/config/field/option/groups/<id>/data',
-          // deleteAPI: '/api/config/field/tree/(id)'
+          listAPI: '/api/adm/config/field/option/groups/<id>/data',
+          // deleteAPI: '/api/adm/config/field/tree/(id)'
         },
         tree: {
           API: {
-            initAPI: '/api/config/field/option/tree',
-            // appendAPI: '/api/config/field/options/<id>',
+            initAPI: '/api/adm/config/field/option/tree',
+            // appendAPI: '/api/adm/config/field/options/<id>',
             // searchAPI: '/api/test',
           }
         },

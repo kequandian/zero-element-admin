@@ -30,7 +30,7 @@ const config = {
       component: 'Form',
       config: {
         API: {
-          createAPI: '/api/config/field/options/<id>',
+          createAPI: '/api/adm/config/field/options/<id>',
         },
         fields: [
           {

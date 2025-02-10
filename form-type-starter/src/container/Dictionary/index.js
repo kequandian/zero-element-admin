@@ -70,7 +70,7 @@ export default function Dictionary(props) {
     setGroupId(id);
   }
   function handleDelete(id) {
-    const api = `/api/config/field/options/${groupId}/bulk/delete`;
+    const api = `/api/adm/config/field/options/${groupId}/bulk/delete`;
     post(api, {
       ids: [id]
     })

@@ -3,9 +3,9 @@
 @endpoint = http://localhost:3000
 ### 获取动态页面
 ### 模块功能：返回j动态页面JSON并渲染出来
-### api地址：/api/config
+### api地址：/api/adm/config
 ### 方法：GET
-GET {{endpoint}}/api/config HTTP/1.1
+GET {{endpoint}}/api/adm/config HTTP/1.1
 
 
 ### 获取页面数据（包含item）

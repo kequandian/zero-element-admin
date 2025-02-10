@@ -10,7 +10,7 @@ app.use(koaBody())
 // api调用
 let setting=require('./api/setting')
 
-app.use(route.get('/api/config',setting.getJson))
+app.use(route.get('/api/adm/config',setting.getJson))
 app.use(route.get('/api/mainpage',setting.getMainPage))
 
 console.log("服务器开启，端口为"+port)

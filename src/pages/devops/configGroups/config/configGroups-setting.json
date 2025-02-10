@@ -5,11 +5,11 @@
     "edit": "编辑分组",
     "view": "查看详情"
   },
-  "listAPI": "/api/adm/config/groups",
-  "createAPI": "/api/adm/config/groups",
-  "getAPI": "/api/adm/config/groups/[id]",
-  "updateAPI": "/api/adm/config/groups/[id]",
-  "deleteAPI": "/api/adm/config/groups/(id)",
+  "listAPI": "/api/adm/cfg/config/groups",
+  "createAPI": "/api/adm/cfg/config/groups",
+  "getAPI": "/api/adm/cfg/config/groups/[id]",
+  "updateAPI": "/api/adm/cfg/config/groups/[id]",
+  "deleteAPI": "/api/adm/cfg/config/groups/(id)",
   "columns": 1,
   "createFields": [
     {
@@ -98,7 +98,7 @@
         }
       ],
       "options": {
-        "API": "/api/adm/config/fields",
+        "API": "/api/adm/cfg/config/fields",
         "label": "name",
         "value": "id",
         "formatField": "id"

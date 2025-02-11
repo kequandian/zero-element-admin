@@ -5,11 +5,11 @@
     "edit": "编辑配置",
     "view": "查看详情"
   },
-  "listAPI": "/api/adm/cfg/config/fields",
-  "createAPI": "/api/adm/cfg/config/fields",
-  "getAPI": "/api/adm/cfg/config/fields/[id]",
-  "updateAPI": "/api/adm/cfg/config/fields/[id]",
-  "deleteAPI": "/api/adm/cfg/config/fields/(id)",
+  "listAPI": "/api/cfg/config/fields",
+  "createAPI": "/api/cfg/config/fields",
+  "getAPI": "/api/cfg/config/fields/[id]",
+  "updateAPI": "/api/cfg/config/fields/[id]",
+  "deleteAPI": "/api/cfg/config/fields/(id)",
   "columns": 1,
   "createFields": [
     {
@@ -173,7 +173,7 @@
       "type": "delete",
       "options": {
         "outside": false,
-        "API": "/api/adm/cfg/config/fields/(id)",
+        "API": "/api/cfg/config/fields/(id)",
         "method": "delete"
       },
       "expect": {

@@ -6,11 +6,11 @@ import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
 import { testData } from './test';
 
-interface DynamicZEleProps {
+interface DynamicPageProps {
   pageConfigApi: string; // 页面配置API
 }
 
-export default function DynamicZEle (props:DynamicZEleProps) {
+export default function DynamicPage (props:DynamicPageProps) {
 
   const [pageConfig, setPageConfig] = useState<object>({});
   const [spining, setSpining] = useState<boolean>(false);

@@ -1,5 +1,5 @@
-import DynamicZEle from '@/components/DynamicZEle';
+import DynamicPage from '@/components/DynamicPage';
 
 export default () => {
-  return <DynamicZEle pageConfigApi='/api/crud/lowMainPage/lowMainPages/config?id=49'/>
+  return <DynamicPage pageConfigApi='/api/crud/lowMainPage/lowMainPages/config?id=49'/>
 };

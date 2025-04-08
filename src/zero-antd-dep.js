@@ -84,6 +84,8 @@ import FITSet_toptips from '@/../zero-antd-dep/formItemType/Toptips';
 import FITSet_imageBox from '@/../zero-antd-dep/formItemType/ImageBox';
 import FITSet_path from '@/../zero-antd-dep/formItemType/path';
 import FITSet_TimeSelect from '@/../zero-antd-dep/formItemType/TimeSelect';
+import FITSet_linkButton from '@/../zero-antd-dep/formItemType/LinkButton';
+import FITSet_richTextPlain from '@/../zero-antd-dep/formItemType/RichTextPlain';
 import AITSet_modal from '@/../zero-antd-dep/actionItemType/Modal';
 import AITSet_request from '@/../zero-antd-dep/actionItemType/Request';
 import AITSet_childrenModalAdd from '@/../zero-antd-dep/actionItemType/ChildrenModalAdd';
@@ -204,6 +206,8 @@ FITSet({
 'imageBox': FITSet_imageBox,
 'path': FITSet_path,
 'TimeSelect': FITSet_TimeSelect,
+'link-button': FITSet_linkButton,
+'rich-text-plain': FITSet_richTextPlain,
 
 });
 

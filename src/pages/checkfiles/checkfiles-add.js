@@ -23,4 +23,4 @@ export default function () {
         ],
       }
     return <ZEle namespace="checkfiles-add" config={config} />
-  }
+}

@@ -4,10 +4,11 @@ import ZEle from 'zero-element';
 import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
-import { testData } from './test';
+// import { testData } from './test';
 
 interface DynamicPageProps {
   pageConfigApi: string; // 页面配置API
+  pageConfigData: Object; // 页面配置数据, 优先于 pageConfigApi
 }
 
 export default function DynamicPage (props:DynamicPageProps) {
@@ -20,6 +21,13 @@ export default function DynamicPage (props:DynamicPageProps) {
       fetchPageConfigData();
     }
   }, [props.pageConfigApi]);
+
+  useEffect(() => {
+    if (props.pageConfigData) {
+      setPageConfig(props.pageConfigData);
+    }
+  }, [props.pageConfigData]);
+
 
   const getRequestUrl = () => {
     let url:string = props.pageConfigApi;
@@ -37,15 +45,20 @@ export default function DynamicPage (props:DynamicPageProps) {
   }
 
   async function fetchPageConfigData () {
-    // 测试
-    setPageConfig(testData);
-    return;
+    // below two lines for debug
+    // setPageConfig(testData);
+    // return;
+
     setSpining(true);
+
+    //start fetch page config data
     const res = await query(getRequestUrl());
     if (_.get(res, 'data.code') !== 200) {
       message.error(_.get(res, 'data.message') || '获取页面配置信息失败');
     }
     setPageConfig(_.get(res, 'data.data') || {});
+    //}} 
+
     setSpining(false);
   }
 

@@ -15,7 +15,7 @@ import { useDidMount } from 'zero-element/lib/utils/hooks/lifeCycle'
  * 直接更改 /pages/sys/testPageFetch目录下的pageConfig即可，新增与编辑互通
  */
 
-export default function DynamicPageAdd(props) {
+export default function DynamicPageEdit(props) {
 
   const { } = props
 

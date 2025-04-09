@@ -27,3 +27,4 @@ export default function () {
 
 		return <ZEle namespace="checkfiles-edit" config={config} />
   }
+  

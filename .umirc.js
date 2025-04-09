@@ -4,16 +4,16 @@ export default {
   devServer: {
     port: 8080
   },
-  proxy: {
-    '/api/doswagger': {
-      target: 'http://192.168.137.1:8080',
-      changeOrigin: true
-    },
-    '/api/pageconfig': {
-      target: 'http://gitlab2.cdnline.cn:8000',
-      changeOrigin: true
-    }
-  },
+  // proxy: {
+  //   '/api/doswagger': {
+  //     target: 'http://192.168.137.1:8080',
+  //     changeOrigin: true
+  //   },
+  //   '/api/pageconfig': {
+  //     target: 'http://gitlab2.cdnline.cn:8000',
+  //     changeOrigin: true
+  //   }
+  // },
   title: 'swaggerhub',
   hash: true,
   // history: {

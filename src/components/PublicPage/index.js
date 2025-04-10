@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import ZEle from 'zero-element';
-import qs from 'qs';
 import { message, Spin } from 'antd'
-import { useDidMount, useWillUnmount, useForceUpdate } from 'zero-element/lib/utils/hooks/lifeCycle';
 import { query } from 'zero-element/lib/utils/request';
-// import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
 import { LS } from 'zero-element/lib/utils/storage';
-import useBreadcrumb from '@/framework/useBreadcrumb';
+// import useBreadcrumb from '@/framework/useBreadcrumb';
 
-import { pageUrl } from './config';
-// import { getPageTitle } from '@/utils/dynamicPageTools';
+// import { pageUrl } from './config';
 
 export default (props) => {
+  const pageUrl = 'http://192.168.3.210:8089/forms'
 
   const pageId = window.location.search.replace('?', '').split("=")[1];
   // const title = getPageTitle(pageId)
-
+  console.log('pageId=', pageId)
+  return <Spin spinning={false} >
+    <div>{pageId}</div>
+  </Spin>
   LS.set('currentPageId', pageId)
 
-  useBreadcrumb([
-    { title: '首页', path: '/' },
-    { title: '在线开发', path: '/nocode' },
-  ]);
+  // useBreadcrumb([
+  //   { title: '首页', path: '/' },
+  //   { title: '在线开发', path: '/nocode' },
+  // ]);
 
   const [pageConfig, setPageConfig] = useState('')
   const [spining, setSpining] = useState(true)
@@ -29,7 +29,7 @@ export default (props) => {
 
   useEffect(_ => {
     if (pageId) {
-      setPageConfig('')
+      // setPageConfig('')
       setSpining(true)
       initPageConfig()
     }
@@ -45,7 +45,7 @@ export default (props) => {
       return
     }
 
-    let pageConfigUrl = `${pageUrl}?id=${pageId}`
+    const pageConfigUrl = `${pageUrl}?id=${pageId}`
 
     query(pageConfigUrl, {})
       .then(resp => {
@@ -99,7 +99,5 @@ export default (props) => {
   return <Spin spinning={spining} >
     {pageConfig && handlePage()}
   </Spin>
-
-
 
 };

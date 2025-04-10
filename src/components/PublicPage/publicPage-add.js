@@ -4,7 +4,7 @@ import qs from 'qs';
 import { message, Spin } from 'antd'
 import { useDidMount, useWillUnmount, useForceUpdate } from 'zero-element/lib/utils/hooks/lifeCycle';
 import { query } from 'zero-element/lib/utils/request';
-import useBreadcrumb from '@/framework/useBreadcrumb';
+// import useBreadcrumb from '@/framework/useBreadcrumb';
 import { LS } from 'zero-element/lib/utils/storage';
 
 import { pageUrl } from './config';
@@ -12,10 +12,10 @@ import { pageUrl } from './config';
 
 export default () => {
 
-  useBreadcrumb([
-    { title: '首页', path: '/' },
-    { title: '在线开发', path: '/nocode' },
-  ]);
+  // useBreadcrumb([
+  //   { title: '首页', path: '/' },
+  //   { title: '在线开发', path: '/nocode' },
+  // ]);
 
   // const pathname = window.location.pathname;
 

@@ -6,7 +6,7 @@ import { set as FITSet } from 'zero-element/lib/config/formItemType';
 import { set as AITSet } from 'zero-element/lib/config/actionItemType';
 import { set as VTSet } from 'zero-element/lib/config/valueType';
 
-import LayoutSet_Empty from '@/../zero-antd-dep/layout/Empty';
+  import LayoutSet_Empty from '@/../zero-antd-dep/layout/Empty';
 import LayoutSet_Title from '@/../zero-antd-dep/layout/Title';
 import LayoutSet_BaseTitle from '@/../zero-antd-dep/layout/BaseTitle';
 import LayoutSet_NotTitleContent from '@/../zero-antd-dep/layout/NotTitleContent';

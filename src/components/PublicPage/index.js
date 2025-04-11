@@ -4,19 +4,23 @@ import { message, Spin } from 'antd'
 import { query } from 'zero-element/lib/utils/request';
 import { LS } from 'zero-element/lib/utils/storage';
 // import useBreadcrumb from '@/framework/useBreadcrumb';
+import useQuery from '../hooks/useQuery'  
 
 // import { pageUrl } from './config';
 
 export default (props) => {
   const pageUrl = 'http://192.168.3.210:8089/forms'
 
-  const pageId = window.location.search.replace('?', '').split("=")[1];
+  const queryData = useQuery()
+  const { pageId } = queryData
+
   // const title = getPageTitle(pageId)
-  console.log('pageId=', pageId)
+  console.log('pageId=', JSON.stringify(queryData))
   return <Spin spinning={false} >
     <div>{pageId}</div>
   </Spin>
-  LS.set('currentPageId', pageId)
+
+  // LS.set('currentPageId', pageId)
 
   // useBreadcrumb([
   //   { title: '首页', path: '/' },

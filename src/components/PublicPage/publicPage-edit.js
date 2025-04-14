@@ -8,7 +8,7 @@ import { query } from 'zero-element/lib/utils/request';
 import { LS } from 'zero-element/lib/utils/storage';
 
 import { pageUrl } from './config';
-import { getPageId } from '@/utils/dynamicPageTools';
+// import { getPageId } from '@/utils/dynamicPageTools';
 
 export default () => {
 
@@ -17,9 +17,13 @@ export default () => {
   //   { title: '在线开发', path: '/nocode' },
   // ]);
   
-  // const pathname = window.location.pathname;
   const pageId = LS.get('currentPageId') || '';
-
+    if(pageId === undefined || pageId === null || pageId === '') {
+        return <Spin spinning={false} >
+          <div>从页面路由中获取页面ID失败: query?id=1</div>
+        </Spin>
+    }
+    
     const [pageConfig, setPageConfig] = useState('')
     const [spining, setSpining] = useState(true)
     const [namespace, setNamespace ] = useState('dynamicPage_edit')
@@ -33,32 +37,26 @@ export default () => {
       
       // const index = pathname.lastIndexOf("\/");
       // const pathNameStr = pathname.substring(0,index);
-
       // const { pageId, entityName } = getPageId(pathNameStr)
 
-      //用于设置namespace
       setNamespace(`dynamicPage_edit_${pageId}`)
 
       let pageConfigUrl = `${pageUrl}?id=${pageId}`
 
-
-        query(pageConfigUrl, {})
-          .then(resp => {
-            setSpining(false)
-            const response = resp.data
-            if (response && response.code === 200) {
-                const configData = response.data;
-                setPageConfig(configData)
-                // setTips("加载完成")
-
-            } else {
-                message.error('获取页面配置信息失败')
-                // setTips("加载完成")
-            }
-          }).catch(err => {
-            setSpining(false)
-            message.error('获取页面配置信息失败')
-          })
+      query(pageConfigUrl, {})
+        .then(resp => {
+          setSpining(false)
+          const response = resp.data
+          if (response && response.code === 200) {
+              const configData = response.data;
+              setPageConfig(configData)
+          } else {
+              message.error('获取页面配置信息失败')
+          }
+        }).catch(err => {
+          setSpining(false)
+          message.error('获取页面配置信息失败')
+        })
     }
 
     if(pageConfig){

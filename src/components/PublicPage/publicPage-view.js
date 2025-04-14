@@ -17,19 +17,22 @@ export default () => {
   //   { title: '在线开发', path: '/nocode' },
   // ]);
 
-  // const pathname = window.location.pathname;
   const pageId = LS.get('currentPageId') || '';
+  if(pageId === undefined || pageId === null || pageId === '') {
+      return <Spin spinning={false} >
+        <div>从页面路由中获取页面ID失败: query?id=1</div>
+      </Spin>
+  }
 
   const [pageConfig, setPageConfig] = useState('')
-    const [spining, setSpining] = useState(true)
-    const [namespace, setNamespace ] = useState('dynamicPage_view')
-    // const [tips, setTips] = useState("获取数据中")
+  const [spining, setSpining] = useState(true)
+  const [namespace, setNamespace ] = useState('dynamicPage_view')
 
-    useDidMount(_ => {
-        initPageConfig()
-    });
+  useDidMount(_ => {
+      initPageConfig()
+  });
 
-    function initPageConfig() {
+  function initPageConfig() {
         
       // const index = pathname.lastIndexOf("\/");
       // const pathNameStr = pathname.substring(0,index);
@@ -47,17 +50,15 @@ export default () => {
             if (response && response.code === 200) {
                 const configData = response.data;
                 setPageConfig(configData)
-                // setTips("加载完成")
-
             } else {
                 message.error('获取页面配置信息失败')
-                // setTips("加载完成")
             }
           }).catch(err => {
             setSpining(false)
             message.error('获取页面配置信息失败')
           })
     }
+    
 
     if(pageConfig){
 
@@ -88,7 +89,5 @@ export default () => {
     } else {
         return <Spin spinning={spining} ></Spin>
     }
-
- 
 }
-    
+

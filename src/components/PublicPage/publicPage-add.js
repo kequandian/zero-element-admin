@@ -11,16 +11,18 @@ import { pageUrl } from './config';
 // import { getPageId } from '@/utils/dynamicPageTools';
 
 export default () => {
-
   // useBreadcrumb([
   //   { title: '首页', path: '/' },
   //   { title: '在线开发', path: '/nocode' },
   // ]);
 
-  // const pathname = window.location.pathname;
-
     const pageId = LS.get('currentPageId') || '';
-
+    if(pageId === undefined || pageId === null || pageId === '') {
+        return <Spin spinning={false} >
+          <div>从页面路由中获取页面ID失败: query?id=1</div>
+        </Spin>
+    }
+    
     const [pageConfig, setPageConfig] = useState('')
     const [spining, setSpining] = useState(true)
     const [namespace, setNamespace ] = useState('dynamicPage_add')

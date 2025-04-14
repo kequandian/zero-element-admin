@@ -6,21 +6,23 @@ import { LS } from 'zero-element/lib/utils/storage';
 // import useBreadcrumb from '@/framework/useBreadcrumb';
 import useQuery from '../hooks/useQuery'  
 
-// import { pageUrl } from './config';
+import { pageUrl } from './config';
+// const pageUrl = 'http://192.168.3.210:8089/forms'
 
 export default (props) => {
-  const pageUrl = 'http://192.168.3.210:8089/forms'
 
   const queryData = useQuery()
-  const { pageId } = queryData
+  const { id : pageId } = queryData
+  console.log('pageId=', pageId)
+
+  if(pageId === undefined || pageId === null || pageId === '') {
+    return <Spin spinning={false} >
+      <div>请在浏览器地址栏上指定页面ID: query?id=1</div>
+    </Spin>
+  }
 
   // const title = getPageTitle(pageId)
-  console.log('pageId=', JSON.stringify(queryData))
-  return <Spin spinning={false} >
-    <div>{pageId}</div>
-  </Spin>
-
-  // LS.set('currentPageId', pageId)
+  LS.set('currentPageId', pageId)
 
   // useBreadcrumb([
   //   { title: '首页', path: '/' },
@@ -44,11 +46,6 @@ export default (props) => {
     //用于设置namespace
     setNamespace(`dynamicPage_${pageId}`)
 
-    if (!pageId) {
-      message.error('获取页面ID异常')
-      return
-    }
-
     const pageConfigUrl = `${pageUrl}?id=${pageId}`
 
     query(pageConfigUrl, {})
@@ -58,11 +55,9 @@ export default (props) => {
         if (response && response.code === 200) {
           const configData = response.data;
           setPageConfig(configData)
-          // setTips("加载完成")
 
         } else {
           message.error('获取页面配置信息失败')
-          // setTips("加载完成")
         }
       }).catch(err => {
         setSpining(false)

@@ -27,27 +27,15 @@ export default function useQuery(props) {
         }
     }
 
-
     // start main
-    console.log("window.location.search=", window.location)
-    const pageId = window.location.search.replace('?', '').split("=")[1];
+    
+    // const pageId = window.location.search.replace('?', '').split("=")[1];
+    // const searching = (typeof props == 'object' ) ? (props.search || props.location.search) : props  //pure location string
+    // const pathname = (typeof props === 'object') ?  (props.pathname || props.location.pathname) : undefined
 
-    const searching = (typeof props == 'object' ) ? (props.search || props.location.search) : props  //pure location string
-    const pathname = (typeof props === 'object') ?  (props.pathname || props.location.pathname) : undefined
+    const searching = window.location.href;
+    console.log("searching=", searching)
 
-    const res = {}
-    if (searching) {
-        if (searching.indexOf('?') != -1) {
-            // with/? means pure location string
-            const seps = searching.split('?')
-            res.pathname = seps[0]
-            res.query = useQuery(seps[1])
-        } else {
-            res.pathname = pathname
-            res.query = useQuery(searching)
-        }
-        return res
-    } else {
-        return {}
-    }
+    const res = (searching.indexOf('?') != -1) ? searching.split('?')[1] : searching
+    return useQuery(res)
 }

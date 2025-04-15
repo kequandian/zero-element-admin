@@ -4,10 +4,12 @@ import ZEle from 'zero-element';
 import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
+
 // import { testData } from './test';
 
 interface DynamicPageProps {
-  pageConfigApi: string; // 页面配置API
+  pageConfigNs: string
+  pageConfigApi: string; // 页面配置API （优先）
   pageConfigData: Object; // 页面配置数据, 优先于 pageConfigApi
 }
 
@@ -15,22 +17,29 @@ export default function DynamicPage (props:DynamicPageProps) {
 
   const [pageConfig, setPageConfig] = useState<object>({});
   const [spining, setSpining] = useState<boolean>(false);
+  const [namespace, setNamespace] = useState('dynamicPage')
 
   useEffect(() => {
+    setNamespace(`dynamicPage_${props.pageConfigNs}`)
+
     if (props.pageConfigApi) {
-      fetchPageConfigData();
-    }
-  }, [props.pageConfigApi]);
-
-  useEffect(() => {
-    if (props.pageConfigData) {
+      fetchPageConfigData(props.pageConfigApi);
+    }else if (props.pageConfigData) {
       setPageConfig(props.pageConfigData);
     }
-  }, [props.pageConfigData]);
+  }, [props.pageConfigApi || props.pageConfigData]);
 
 
-  const getRequestUrl = () => {
-    let url:string = props.pageConfigApi;
+  // useEffect(() => {
+  //   if (props.pageConfigData) {
+  //     setNamespace(`dynamicPage_${props.pageConfigNs}`)
+  //     setPageConfig(props.pageConfigData);
+  //   }
+  // }, [props.pageConfigData]);
+
+
+  const getRequestUrl = (pageConfigApi) => {
+    let url:string = pageConfigApi;
     let query = window.location.search.replace('?', '');
     if (!query && window.location.href.includes('?')) {
       query = window.location.href.substring(window.location.href.indexOf('?') + 1);
@@ -44,7 +53,7 @@ export default function DynamicPage (props:DynamicPageProps) {
     return url;
   }
 
-  async function fetchPageConfigData () {
+  async function fetchPageConfigData (pageConfigApi) {
     // below two lines for debug
     // setPageConfig(testData);
     // return;
@@ -52,11 +61,11 @@ export default function DynamicPage (props:DynamicPageProps) {
     setSpining(true);
 
     //start fetch page config data
-    const res = await query(getRequestUrl());
+    const res = await query(getRequestUrl(pageConfigApi));
     if (_.get(res, 'data.code') !== 200) {
       message.error(_.get(res, 'data.message') || '获取页面配置信息失败');
     }
-    setPageConfig(_.get(res, 'data.data') || {});
+    setPageConfig(_.get(res, 'data.data.form') || _.get(res, 'data.data') || {});
     //}} 
 
     setSpining(false);
@@ -88,7 +97,7 @@ export default function DynamicPage (props:DynamicPageProps) {
       ],
     }
     return (
-      <ZEle namespace="dynamicPage" config={config} />
+      <ZEle namespace={namespace} config={config} />
     )
   }, [pageConfig]);
 

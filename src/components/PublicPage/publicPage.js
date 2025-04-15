@@ -5,9 +5,7 @@ import { query } from 'zero-element/lib/utils/request';
 import { LS } from 'zero-element/lib/utils/storage';
 // import useBreadcrumb from '@/framework/useBreadcrumb';
 import useQuery from '../hooks/useQuery'  
-
 import { pageUrl } from './config';
-// const pageUrl = 'http://192.168.3.210:8089/forms'
 
 export default (props) => {
 

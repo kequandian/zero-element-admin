@@ -1,92 +1,62 @@
-import React, { useState } from 'react';
-import ZEle from 'zero-element';
-import qs from 'qs';
-import { message, Spin } from 'antd'
-import { useDidMount, useWillUnmount, useForceUpdate } from 'zero-element/lib/utils/hooks/lifeCycle';
-import { query } from 'zero-element/lib/utils/request';
-// import useBreadcrumb from '@/framework/useBreadcrumb';
+import React, { useState, useMemo, useEffect } from 'react';
 import { LS } from 'zero-element/lib/utils/storage';
 
-import { pageUrl } from './config';
-// import { getPageId } from '@/utils/dynamicPageTools';
+import DynamicPage from '@/components/DynamicPage';
+import useQuery from '../hooks/useQuery'  
+const pageUrl = '/forms'
 
 export default () => {
-  // useBreadcrumb([
-  //   { title: '首页', path: '/' },
-  //   { title: '在线开发', path: '/nocode' },
-  // ]);
 
-    const pageId = LS.get('currentPageId') || '';
-    if(pageId === undefined || pageId === null || pageId === '') {
-        return <Spin spinning={false} >
-          <div>从页面路由中获取页面ID失败: query?id=1</div>
-        </Spin>
+  const [namespace, setNamespace] = useState('dynamicPage')
+  const [pageConfigUrl, setPageConfigUrl] = useState('')
+  const [spinning, setSpinning] = useState<boolean>(false);
+
+  // get query params from url
+  const pageId = useMemo(() => {
+    const queryData = useQuery()
+    const { id, pageId } = queryData
+    return pageId || id
+  }, [])
+
+  useEffect( () => {
+    if (pageId) {
+      setNamespace(`dynamicPage_${pageId}`)
+      setPageConfigUrl(`${pageUrl}?id=${pageId}`)
+      
+      LS.set('currentPageId', pageId)
     }
-    
-    const [pageConfig, setPageConfig] = useState('')
-    const [spining, setSpining] = useState(true)
-    const [namespace, setNamespace ] = useState('dynamicPage_add')
+  }, [pageId]);
 
-    useDidMount(_ => {
-        initPageConfig()
-    });
+  // get pageConfig from private storage
+  const pageConfig = LS.get('currentPageConfig') || {};
 
-    function initPageConfig() {
-
-      // const index = pathname.lastIndexOf("\/");
-      // const pathNameStr = pathname.substring(0,index);
-
-      // const { pageId, entityName } = getPageId(pathNameStr)
-
-      //用于设置namespace
-      setNamespace(`dynamicPage_add_${pageId}`)
-
-      let pageConfigUrl = `${pageUrl}?id=${pageId}`
-
-      query(pageConfigUrl, {})
-        .then(resp => {
-          setSpining(false)
-          const response = resp.data
-          if (response && response.code === 200) {
-              const configData = response.data;
-              setPageConfig(configData)
-              // setTips("加载完成")
-
-          } else {
-              message.error('获取页面配置信息失败')
-              // setTips("加载完成")
-          }
-        }).catch(err => {
-          setSpining(false)
-          message.error('获取页面配置信息失败')
-        })
+  const ZEleAddPage = useMemo(() => {
+    const config = {
+      layout: pageConfig.layout.form,
+      title: pageConfig.pageName.new,
+      items: [
+        {
+          component: 'Form',
+          config: {
+            API: {
+              createAPI: pageConfig.createAPI,
+            },
+            layout: 'Grid',
+            layoutConfig: {
+              value: Array(pageConfig.columns).fill(~~(24 / pageConfig.columns)),
+            },
+            fields: pageConfig.createFields || pageConfig.formFields,
+          },
+        },
+      ],
     }
+  
+    return <DynamicPage pageConfigNs={namespace} pageConfigApi={pageConfigUrl} pageConfigData={{}} __nsPageConfig={config} />
+  }, [pageConfig])
 
-    if(pageConfig){
-        const config = {
-            layout: pageConfig.layout.form,
-            title: pageConfig.pageName.new,
-            items: [
-              {
-                component: 'Form',
-                config: {
-                  API: {
-                    createAPI: pageConfig.createAPI,
-                  },
-                  layout: 'Grid',
-                  layoutConfig: {
-                    value: Array(pageConfig.columns).fill(~~(24 / pageConfig.columns)),
-                  },
-                  fields: pageConfig.createFields || pageConfig.formFields,
-                },
-              },
-            ],
-          }
-
-        return (
-            <ZEle namespace={namespace} config={config} />
-        )
-    } else {
-        return <Spin spinning={spining} ></Spin>
-    }
+    return (
+      <Spin spinning={spinning}>
+        {Object.keys(pageConfig).length > 0 && ZEleAddPage}
+      </Spin>
+    )
 };

@@ -17,6 +17,8 @@ export default () => {
     return pageId || id
   }, [])
 
+  console.log('pageId', pageId)
+
   useEffect( () => {
     if (pageId) {
       setNamespace(`dynamicPage_${pageId}`)

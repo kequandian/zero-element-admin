@@ -4,19 +4,21 @@ import ZEle from 'zero-element';
 import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
+import { LS } from 'zero-element/lib/utils/storage';
 
 // import { testData } from './test';
 
 interface DynamicPageProps {
   pageConfigNs: string
-  pageConfigApi: string; // 页面配置API （优先）
-  pageConfigData: Object; // 页面配置数据, 优先于 pageConfigApi
+  pageConfigApi: string;        // 页面配置API （优先）
+  pageConfigData: Object;       // 页面配置数据, 优先于 pageConfigApi
+  __nsPageConfig?: object;  // 传递给 ZEle 的配置
 }
 
 export default function DynamicPage (props:DynamicPageProps) {
 
   const [pageConfig, setPageConfig] = useState<object>({});
-  const [spining, setSpining] = useState<boolean>(false);
+  const [spinning, setSpinning] = useState<boolean>(false);
   const [namespace, setNamespace] = useState('dynamicPage')
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export default function DynamicPage (props:DynamicPageProps) {
       fetchPageConfigData(props.pageConfigApi);
     }else if (props.pageConfigData) {
       setPageConfig(props.pageConfigData);
+      LS.set('currentPageConfig', pageConfig)
     }
   }, [props.pageConfigApi || props.pageConfigData]);
 
@@ -39,17 +42,13 @@ export default function DynamicPage (props:DynamicPageProps) {
 
 
   const getRequestUrl = (pageConfigApi) => {
-    let url:string = pageConfigApi;
-    let query = window.location.search.replace('?', '');
-    if (!query && window.location.href.includes('?')) {
-      query = window.location.href.substring(window.location.href.indexOf('?') + 1);
-    }
-    if (!url.includes('http')) {
-      url = getEndpoint() + url;
-    }
+    const url:string = pageConfigApi.includes('http') ? pageConfigApi : (getEndpoint() + pageConfigApi);
+    const query = window.location.search ? window.location.search.replace('?', '') : (window.location.href.includes('?')? window.location.href.substring(window.location.href.indexOf('?') + 1) : undefined);
     if (query) {
-      url+= (url.includes('?') ? `&${query}` : `?${query}`);
+      const urlWithQuery = url + (url.includes('?') ? `&${query}` : `?${query}`);
+      return urlWithQuery
     }
+
     return url;
   }
 
@@ -58,7 +57,7 @@ export default function DynamicPage (props:DynamicPageProps) {
     // setPageConfig(testData);
     // return;
 
-    setSpining(true);
+    setSpinning(true);
 
     //start fetch page config data
     const res = await query(getRequestUrl(pageConfigApi));
@@ -66,13 +65,13 @@ export default function DynamicPage (props:DynamicPageProps) {
       message.error(_.get(res, 'data.message') || '获取页面配置信息失败');
     }
     setPageConfig(_.get(res, 'data.data.form') || _.get(res, 'data.data') || {});
-    //}} 
+    LS.set('currentPageConfig', pageConfig)
 
-    setSpining(false);
+    setSpinning(false);
   }
 
   const ZEleElement = useMemo(() => {
-    const config = {
+    const config = props.__nsPageConfig? props.__nsPageConfig : {
       layout: _.get(pageConfig, 'layout.table') || '',
       title: _.get(pageConfig, 'pageName.table') || '',
       items: [
@@ -102,7 +101,7 @@ export default function DynamicPage (props:DynamicPageProps) {
   }, [pageConfig]);
 
   return (
-    <Spin spinning={spining}>
+    <Spin spinning={spinning}>
       {Object.keys(pageConfig).length > 0 && ZEleElement}
     </Spin>
   )

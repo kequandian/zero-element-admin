@@ -4,15 +4,16 @@ import ZEle from 'zero-element';
 import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
-import { LS } from 'zero-element/lib/utils/storage';
-
-// import { testData } from './test';
+// import { LS } from 'zero-element/lib/utils/storage';
+const PAGE_ADD:number = 1
+const PAGE_EDIT:number = 2
+const PAGE_VIEW:number = 3
 
 interface DynamicPageProps {
   pageConfigNs: string
   pageConfigApi: string;        // 页面配置API （优先）
   pageConfigData: Object;       // 页面配置数据, 优先于 pageConfigApi
-  __nsPageConfig?: object;  // 传递给 ZEle 的配置
+  __nsPageRouter?: number;      // 传递给 ZEle 的子页面类型 [PAGE_ADD, PAGE_EDIT, PAGE_VIEW]
 }
 
 export default function DynamicPage (props:DynamicPageProps) {
@@ -28,7 +29,7 @@ export default function DynamicPage (props:DynamicPageProps) {
       fetchPageConfigData(props.pageConfigApi);
     }else if (props.pageConfigData) {
       setPageConfig(props.pageConfigData);
-      LS.set('currentPageConfig', pageConfig)
+      // LS.set('currentPageConfig', pageConfig)
     }
   }, [props.pageConfigApi || props.pageConfigData]);
 
@@ -65,13 +66,12 @@ export default function DynamicPage (props:DynamicPageProps) {
       message.error(_.get(res, 'data.message') || '获取页面配置信息失败');
     }
     setPageConfig(_.get(res, 'data.data.form') || _.get(res, 'data.data') || {});
-    LS.set('currentPageConfig', pageConfig)
-
+    // LS.set('currentPageConfig', pageConfig)
     setSpinning(false);
   }
 
   const ZEleElement = useMemo(() => {
-    const config = props.__nsPageConfig? props.__nsPageConfig : {
+    const config = {
       layout: _.get(pageConfig, 'layout.table') || '',
       title: _.get(pageConfig, 'pageName.table') || '',
       items: [
@@ -95,8 +95,77 @@ export default function DynamicPage (props:DynamicPageProps) {
         },
       ],
     }
+    
+    const configAdd = {
+          layout: _.get(pageConfig, 'layout.form') || '',
+          title: _.get(pageConfig, 'pageName.new') || '',
+          items: [
+            {
+              component: 'Form',
+              config: {
+                API: {
+                  createAPI: _.get(pageConfig, 'createAPI') || '',
+                },
+                layout: 'Grid',
+                layoutConfig: {
+                  value: Array(_.get(pageConfig, 'columns')).fill(~~(24 / _.get(pageConfig, 'columns'))),
+                },
+                fields: _.get(pageConfig, 'createFields') || _.get(pageConfig, 'formFields') || [],
+              },
+            },
+          ],
+        }
+    const configEdit = {
+      layout: _.get(pageConfig, 'layout.form') || '',
+      title: _.get(pageConfig, 'pageName.edit') || '',
+      items: [
+        {
+          component: 'Form',
+          config: {
+            API: {
+              getAPI: _.get(pageConfig, 'getAPI') || '',
+              updateAPI: _.get(pageConfig, 'updateAPI') || '',
+            },
+            layout: 'Grid',
+            layoutConfig: {
+              value: Array(_.get(pageConfig, 'columns')).fill(~~(24 / _.get(pageConfig, 'columns'))),
+            },
+            fields: _.get(pageConfig, 'updateFields') || _.get(pageConfig, 'formFields') || [],
+          },
+        },
+      ],
+    }
+    
+    const configView = {
+      layout: _.get(pageConfig, 'layout.form') || '',
+      title: _.get(pageConfig, 'pageName.view') || '',
+      items: [
+        {
+          component: 'Form',
+          config: {
+            API: {
+              getAPI: _.get(pageConfig, 'getAPI') || '',
+            },
+            layout: 'Grid',
+            layoutConfig: {
+              value: Array(_.get(pageConfig, 'columns')).fill(~~(24 / _.get(pageConfig, 'columns'))),
+            },
+            fields: _.get(pageConfig, 'viewConfig') || _.get(pageConfig, 'formFields') || [],
+            otherProps: {
+              footerButton: false
+            }
+          },
+        },
+      ],
+    }
+
+
+    const currentConfig = props.__nsPageRouter === PAGE_ADD ? configAdd : 
+        (props.__nsPageRouter === PAGE_EDIT? configEdit : 
+          (props.__nsPageRouter === PAGE_VIEW?configView:config) )
+
     return (
-      <ZEle namespace={namespace} config={config} />
+      <ZEle namespace={namespace} config={currentConfig} />
     )
   }, [pageConfig]);
 

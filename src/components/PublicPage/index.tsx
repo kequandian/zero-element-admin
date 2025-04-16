@@ -16,8 +16,7 @@ export default () => {
     const { id, pageId } = queryData
     return pageId || id
   }, [])
-
-  console.log('pageId', pageId)
+  // console.log('pageId', pageId)
 
   useEffect( () => {
     if (pageId) {

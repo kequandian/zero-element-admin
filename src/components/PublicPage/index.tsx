@@ -3,9 +3,15 @@ import { LS } from 'zero-element/lib/utils/storage';
 
 import DynamicPage from '@/components/DynamicPage';
 import useQuery from '../hooks/useQuery'  
-const pageUrl = '/forms'
+// const pageUrl = '/forms'
 
-export default () => {
+interface DynamicPageProps {
+  pageServer: string  // page server url
+}
+
+export default (props:DynamicPageProps) => {
+
+  const { pageServer } = props  //页面服务地址
 
   const [namespace, setNamespace] = useState('dynamicPage')
   const [pageConfigUrl, setPageConfigUrl] = useState('')
@@ -21,7 +27,7 @@ export default () => {
   useEffect( () => {
     if (pageId) {
       setNamespace(`dynamicPage_${pageId}`)
-      setPageConfigUrl(`${pageUrl}?id=${pageId}`)
+      setPageConfigUrl(`${pageServer}?id=${pageId}`)
       
       LS.set('currentPageId', pageId)
     }

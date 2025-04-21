@@ -5,15 +5,15 @@ import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
 // import { LS } from 'zero-element/lib/utils/storage';
-const PAGE_ADD:number = 1
-const PAGE_EDIT:number = 2
-const PAGE_VIEW:number = 3
+const PAGE_ID_ADD:number = 1
+const PAGE_ID_EDIT:number = 2
+const PAGE_ID_VIEW:number = 3
 
 interface DynamicPageProps {
   pageConfigNs: string
   pageConfigApi: string;        // 页面配置API （优先）
   pageConfigData: Object;       // 页面配置数据, 优先于 pageConfigApi
-  __nsPageRouter?: number;      // 传递给 ZEle 的子页面类型 [PAGE_ADD, PAGE_EDIT, PAGE_VIEW]
+  __nsRouterPageId?: number;    // 传递给 ZEle 的子页面类型 [PAGE_ID_ADD, PAGE_ID_EDIT, PAGE_ID_VIEW]
 }
 
 export default function DynamicPage (props:DynamicPageProps) {
@@ -160,10 +160,9 @@ export default function DynamicPage (props:DynamicPageProps) {
     }
 
 
-    const currentConfig = props.__nsPageRouter === PAGE_ADD ? configAdd : 
-        (props.__nsPageRouter === PAGE_EDIT? configEdit : 
-          (props.__nsPageRouter === PAGE_VIEW?configView:config) )
-
+    const currentConfig = props.__nsRouterPageId === PAGE_ID_ADD ? configAdd : 
+        (props.__nsRouterPageId === PAGE_ID_EDIT? configEdit : 
+          (props.__nsRouterPageId === PAGE_ID_VIEW?configView:config) )
     return (
       <ZEle namespace={namespace} config={currentConfig} />
     )

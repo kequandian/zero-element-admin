@@ -9,11 +9,13 @@ import { setid as setCurrentPageId } from './config';
 
 interface DynamicPageProps {
   pageServer: string  // page server url
+  pageData: any // page data
 }
 
 export default (props:DynamicPageProps) => {
 
-  const { pageServer } = props  //页面服务地址
+  const { pageServer, pageData } = props  //页面服务地址
+  // console.log('pageData= ', pageData)
 
   const [namespace, setNamespace] = useState('dynamicPage')
   const [pageConfigUrl, setPageConfigUrl] = useState('')
@@ -40,5 +42,5 @@ export default (props:DynamicPageProps) => {
     }
   }, [pageId]);
 
-  return <DynamicPage pageConfigNs={namespace} pageConfigApi={pageConfigUrl} pageConfigData={{}} />
+  return <DynamicPage pageConfigNs={namespace} pageConfigApi={pageConfigUrl} pageConfigData={pageData} />
 };

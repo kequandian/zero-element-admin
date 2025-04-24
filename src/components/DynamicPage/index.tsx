@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import _ from 'lodash';
 import ZEle from 'zero-element';
+import qs from 'qs';
+
 import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
@@ -25,13 +27,12 @@ export default function DynamicPage (props:DynamicPageProps) {
   useEffect(() => {
     setNamespace(`dynamicPage_${props.pageConfigNs}`)
 
-    if (props.pageConfigApi) {
-      fetchPageConfigData(props.pageConfigApi);
-    }else if (props.pageConfigData) {
+    if (props.pageConfigData) {
       setPageConfig(props.pageConfigData);
-      // LS.set('currentPageConfig', pageConfig)
+    }else if (props.pageConfigApi) {
+      fetchPageConfigData(props.pageConfigApi);
     }
-  }, [props.pageConfigApi || props.pageConfigData]);
+  }, [props.pageConfigData||props.pageConfigApi]);
 
 
   // useEffect(() => {
@@ -44,7 +45,9 @@ export default function DynamicPage (props:DynamicPageProps) {
 
   const getRequestUrl = (pageConfigApi) => {
     const url:string = pageConfigApi.includes('http') ? pageConfigApi : (getEndpoint() + pageConfigApi);
-    const query = window.location.search ? window.location.search.replace('?', '') : (window.location.href.includes('?')? window.location.href.substring(window.location.href.indexOf('?') + 1) : undefined);
+
+    const routeParam = window.location.search ? qs.parse(window.location.search.replace('?', '')) : undefined;
+    const query =  routeParam || (window.location.href.includes('?')? window.location.href.substring(window.location.href.indexOf('?') + 1) : undefined);
     if (query) {
       const urlWithQuery = url + (url.includes('?') ? `&${query}` : `?${query}`);
       return urlWithQuery

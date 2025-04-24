@@ -1,10 +1,9 @@
 {
 	"pageName": {
-		"new": "新增",
-		"view": "swagger",
-		"edit": "编辑",
-		"name": "swagger",
-		"table": "标题"
+		"new": "新增1",
+		"view": "查看1",
+		"edit": "编辑1",
+		"table": "SWAGGER文件列表"
 	},
 	"listAPI": "/api/doswagger/checkfiles",
 	"createAPI": "/api/doswagger/checkfiles",
@@ -82,7 +81,7 @@
         "outside": true
       }
     },
-		{
+	{
       "title": "查看",
       "type": "path",
       "options": {

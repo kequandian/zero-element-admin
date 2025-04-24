@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 // import { LS } from 'zero-element/lib/utils/storage';
 import DynamicPage from '@/components/DynamicPage';
 import useQuery from '../hooks/useQuery'  
+
 // const pageUrl = '/forms'
 import { get as getPageServer } from './config';
 import { getid as getCurrentPageId } from './config';

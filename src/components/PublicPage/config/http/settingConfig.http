@@ -11,10 +11,9 @@ Content-Type: application/json
 {
 	"pageName": {
 		"new": "新增",
-		"view": "swagger",
+		"view": "查看",
 		"edit": "编辑",
-		"name": "swagger",
-		"table": "标题"
+		"table": "swagger"
 	},
 	"listAPI": "/api/doswagger/checkfiles",
 	"createAPI": "/api/doswagger/checkfiles",
@@ -308,7 +307,7 @@ Content-Type: application/json
     "getAPI": "/api/doswagger/checkfiles/[id]",
     "pageName": {
         "new": "新增",
-        "view": "swagger",
+        "view": "查看",
         "edit": "编辑",
         "name": "swagger",
         "table": "swagger-hub"

@@ -7,6 +7,7 @@
     "test": "umi test"
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^6.38.22",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@umijs/preset-react": "^1.5.12",
@@ -22,8 +23,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
-    "eslint": "^5.4.0",
     "cross-env": "^7.0.3",
+    "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
     "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.18.2",

@@ -1,3 +1,8 @@
+/**
+ * title: 数据服务
+ * icon: database
+ * order: 5
+ */
 import React from 'react';
 // import useBreadcrumb from '@/framework/useBreadcrumb';
 import Activities from './config/dataService';

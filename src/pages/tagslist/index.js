@@ -1,3 +1,8 @@
+/**
+ * title: 标签列表
+ * icon: tags
+ * order: 9
+ */
 import React from 'react';
 import ZEle from 'zero-element';
 const setting = require('./config/tagslist-setting.json');

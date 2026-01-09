@@ -1,3 +1,8 @@
+/**
+ * title: 注册表
+ * icon: appstore
+ * order: 8
+ */
 import React from 'react';
 import ZEle from 'zero-element';
 const setting = require('./config/registry-setting.json');

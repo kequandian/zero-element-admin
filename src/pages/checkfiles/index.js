@@ -1,3 +1,8 @@
+/**
+ * title: 检查文件
+ * icon: file-text
+ * order: 7
+ */
 import React from 'react';
 import ZEle from 'zero-element';
 // const setting = require('./config/checkfiles-setting.json');

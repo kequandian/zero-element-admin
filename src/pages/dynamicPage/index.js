@@ -1,3 +1,8 @@
+/**
+ * title: 动态页面
+ * icon: file-search
+ * order: 3
+ */
 import DynamicPage from '@/components/DynamicPage';
 
 export default () => {

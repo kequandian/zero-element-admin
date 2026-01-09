@@ -1,3 +1,8 @@
+/**
+ * title: 动态页面工具
+ * icon: tool
+ * order: 2
+ */
 import React, { useState, useEffect } from 'react';
 import ZEle from 'zero-element';
 // import useBreadcrumb from '@/framework/useBreadcrumb';

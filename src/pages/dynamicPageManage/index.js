@@ -1,3 +1,8 @@
+/**
+ * title: 动态页面管理
+ * icon: setting
+ * order: 1
+ */
 import React from 'react';
 import ZEle from 'zero-element';
 import config from './config/index';

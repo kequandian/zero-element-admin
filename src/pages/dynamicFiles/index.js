@@ -1,3 +1,8 @@
+/**
+ * title: 动态文件
+ * icon: file
+ * order: 6
+ */
 // import DynamicPage from '@/components/DynamicPage';
 import PublicPage from '@/components/PublicPage';
 // const pageConfigApi = '/forms?id=12100'

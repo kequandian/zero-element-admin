@@ -7,9 +7,11 @@ import { message, Spin } from 'antd';
 import { query } from 'zero-element/lib/utils/request';
 import { get as getEndpoint } from 'zero-element/lib/utils/request/endpoint';
 // import { LS } from 'zero-element/lib/utils/storage';
-const PAGE_ID_ADD:number = 1
-const PAGE_ID_EDIT:number = 2
-const PAGE_ID_VIEW:number = 3
+const enum PageId {
+  ADD = 1,
+  EDIT = 2,
+  VIEW = 3,
+}
 
 interface DynamicPageProps {
   pageConfigNs: string
@@ -163,9 +165,9 @@ export default function DynamicPage (props:DynamicPageProps) {
     }
 
 
-    const currentConfig = props.__nsRouterPageId === PAGE_ID_ADD ? configAdd : 
-        (props.__nsRouterPageId === PAGE_ID_EDIT? configEdit : 
-          (props.__nsRouterPageId === PAGE_ID_VIEW?configView:config) )
+    const currentConfig = props.__nsRouterPageId === PageId.ADD ? configAdd :
+        (props.__nsRouterPageId === PageId.EDIT ? configEdit :
+          (props.__nsRouterPageId === PageId.VIEW ? configView : config))
     return (
       <ZEle namespace={namespace} config={currentConfig} />
     )

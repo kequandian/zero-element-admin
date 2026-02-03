@@ -1,46 +1,38 @@
 import React, { useState, useMemo, useEffect } from 'react';
-// import { LS } from 'zero-element/lib/utils/storage';
 
 import DynamicPage from '@/components/DynamicPage';
-import useQuery from '../hooks/useQuery'  
-// const pageUrl = '/forms'
+import useQuery from '../hooks/useQuery';
 import { set as setPageServer } from './config';
 import { setid as setCurrentPageId } from './config';
 
-interface DynamicPageProps {
-  pageServer: string  // page server url
-  pageData: any // page data
+interface PublicPageProps {
+  pageServer: string;  // page server url
+  pageData: any;  // page data
 }
 
-export default (props:DynamicPageProps) => {
+export default function PublicPage(props: PublicPageProps): React.ReactElement {
+  const { pageServer, pageData } = props;
 
-  const { pageServer, pageData } = props  //页面服务地址
-  // console.log('pageData= ', pageData)
-
-  const [namespace, setNamespace] = useState('dynamicPage')
-  const [pageConfigUrl, setPageConfigUrl] = useState('')
+  const [namespace, setNamespace] = useState('dynamicPage');
+  const [pageConfigUrl, setPageConfigUrl] = useState('');
 
   // save page server for other internal pages
-  setPageServer(pageServer)
-
+  setPageServer(pageServer);
 
   // get query params from url
   const pageId = useMemo(() => {
-    const queryData = useQuery()
-    const { pageid, pageId } = queryData
-    return pageid || pageId
-  }, [])
-  // console.log('pageId', pageId)
+    const queryData = useQuery();
+    const { pageid, pageId } = queryData;
+    return pageid || pageId;
+  }, []);
 
-  useEffect( () => {
+  useEffect(() => {
     if (pageId) {
-      setNamespace(`dynamicPage_${pageId}`)
-      setPageConfigUrl(`${pageServer}?id=${pageId}`)
-      
-      // LS.set('currentPageId', pageId)
-      setCurrentPageId(pageId)
+      setNamespace(`dynamicPage_${pageId}`);
+      setPageConfigUrl(`${pageServer}?id=${pageId}`);
+      setCurrentPageId(pageId);
     }
-  }, [pageId]);
+  }, [pageId, pageServer]);
 
-  return <DynamicPage pageConfigNs={namespace} pageConfigApi={pageConfigUrl} pageConfigData={pageData} />
-};
+  return <DynamicPage pageConfigNs={namespace} pageConfigApi={pageConfigUrl} pageConfigData={pageData} />;
+}

@@ -98,7 +98,7 @@ const FormTools = forwardRef<FormRef, FormToolsProps>((props, ref) => {
       }
     })
 
-  useEffect(_ => {
+  useEffect(() => {
     //
     if (formData) {
       setData(formData)
@@ -253,7 +253,7 @@ const FormTools = forwardRef<FormRef, FormToolsProps>((props, ref) => {
     const callback = (field: string, v: any) => {
       defaultChange(field, v[field])
     }
-    return <FetchSelect cb={(v) => callback(item.field, v)} formData={formData} {...item} key={`${i}_fetchselect`} />
+    return <FetchSelect cb={(v) => callback(item.field, v)} formData={formData} {...item} options={item.options as any} key={`${i}_fetchselect`} />
   }
 
   //json项

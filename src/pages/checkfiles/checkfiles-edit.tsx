@@ -18,7 +18,7 @@ export default function CheckFilesEdit(): React.ReactElement {
           layoutConfig: {
             value: Array(setting.columns).fill(~~(24 / setting.columns)),
           },
-          fields: setting.updateFields || setting.formFields,
+          fields: setting.updateFields || (setting as any).formFields,
         },
       },
     ],

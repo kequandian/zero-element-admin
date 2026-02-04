@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import ZEle from 'zero-element';
-import config from './config/designAttrs';
+import config from './config/designAttrs/config';
 import global from 'zero-element/lib/config/global';
 // import useBreadcrumb from '@/framework/useBreadcrumb';
 

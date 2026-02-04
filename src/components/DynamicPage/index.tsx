@@ -14,9 +14,9 @@ const enum PageId {
 }
 
 interface DynamicPageProps {
-  pageConfigNs: string
-  pageConfigApi: string;        // 页面配置API （优先）
-  pageConfigData: Object;       // 页面配置数据, 优先于 pageConfigApi
+  pageConfigNs?: string
+  pageConfigApi?: string;        // 页面配置API （优先）
+  pageConfigData?: Object;       // 页面配置数据, 优先于 pageConfigApi
   __nsRouterPageId?: number;    // 传递给 ZEle 的子页面类型 [PAGE_ID_ADD, PAGE_ID_EDIT, PAGE_ID_VIEW]
 }
 
@@ -113,7 +113,7 @@ export default function DynamicPage (props:DynamicPageProps) {
                 },
                 layout: 'Grid',
                 layoutConfig: {
-                  value: Array(_.get(pageConfig, 'columns')).fill(~~(24 / _.get(pageConfig, 'columns'))),
+                  value: Array(_.get(pageConfig, 'columns') || 1).fill(~~(24 / (_.get(pageConfig, 'columns') || 1))),
                 },
                 fields: _.get(pageConfig, 'createFields') || _.get(pageConfig, 'formFields') || [],
               },
@@ -133,7 +133,7 @@ export default function DynamicPage (props:DynamicPageProps) {
             },
             layout: 'Grid',
             layoutConfig: {
-              value: Array(_.get(pageConfig, 'columns')).fill(~~(24 / _.get(pageConfig, 'columns'))),
+              value: Array(_.get(pageConfig, 'columns') || 1).fill(~~(24 / (_.get(pageConfig, 'columns') || 1))),
             },
             fields: _.get(pageConfig, 'updateFields') || _.get(pageConfig, 'formFields') || [],
           },
@@ -153,7 +153,7 @@ export default function DynamicPage (props:DynamicPageProps) {
             },
             layout: 'Grid',
             layoutConfig: {
-              value: Array(_.get(pageConfig, 'columns')).fill(~~(24 / _.get(pageConfig, 'columns'))),
+              value: Array(_.get(pageConfig, 'columns') || 1).fill(~~(24 / (_.get(pageConfig, 'columns') || 1))),
             },
             fields: _.get(pageConfig, 'viewConfig') || _.get(pageConfig, 'formFields') || [],
             otherProps: {

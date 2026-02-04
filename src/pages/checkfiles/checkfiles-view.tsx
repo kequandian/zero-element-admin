@@ -17,7 +17,7 @@ export default function CheckFilesView(): React.ReactElement {
           layoutConfig: {
             value: Array(setting.columns).fill(~~(24 / setting.columns)),
           },
-          fields: setting.viewConfig || setting.formFields,
+          fields: setting.viewConfig || (setting as any).formFields,
           otherProps: {
             footerButton: false
           }

@@ -39,7 +39,7 @@ export default function FetchSelect(props: FetchSelectProps): React.ReactElement
     value: optValue = 'value',
   } = options;
 
-  const [defaultValue, setDefaultValue] = useState<string | undefined>(undefined)
+  const [defaultValue, setDefaultValue] = useState<string[] | undefined>(undefined)
   const [loading, setLoading] = useState<boolean>(false);
   const [listData, setListData] = useState<OptionType[]>([]);
 
@@ -48,7 +48,7 @@ export default function FetchSelect(props: FetchSelectProps): React.ReactElement
   const id = searchList && searchList[1] ? qs.parse(searchList[1]).id as string : '';
   console.log('id == ', id)
 
-  useEffect(_ => {
+  useEffect(() => {
     if (id && API) {
       getData(id)
     } else {
@@ -56,10 +56,16 @@ export default function FetchSelect(props: FetchSelectProps): React.ReactElement
     }
   }, [id, API])
 
-  useEffect(_ => {
+  useEffect(() => {
 
     if (formData) {
-      setDefaultValue(formData[field])
+      const value = formData[field];
+      // Convert string to array for tags mode
+      if (typeof value === 'string') {
+        setDefaultValue(value ? [value] : undefined);
+      } else {
+        setDefaultValue(value);
+      }
     }
   }, [formData, field])
 
@@ -77,7 +83,7 @@ export default function FetchSelect(props: FetchSelectProps): React.ReactElement
           console.log('获取下拉框数据失败')
         }
       })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false)
       })
   }
@@ -100,9 +106,9 @@ export default function FetchSelect(props: FetchSelectProps): React.ReactElement
     let nData: string | OptionType = ''
     if (data.length > 0) {
       nData = data[data.length - 1]
-      setDefaultValue(nData)
+      setDefaultValue(nData ? [nData] : undefined)
     } else {
-      setDefaultValue(nData)
+      setDefaultValue(undefined)
     }
     if (cb) {
       const value: any = {}

@@ -167,12 +167,33 @@ declare module 'zero-element/lib/utils/window' {
 declare module 'zero-element/lib/utils/hooks/lifeCycle' {
   export function useDidMount(cb: any): void;
   export function useForceUpdate(): any;
+  export function useWillUnmount(cb: any): void;
 }
 
 declare module 'zero-element/lib/helper/form/useBaseForm' {
   export function useBaseForm(options: any): any;
+  export default function useBaseForm(options: any): any;
 }
 
 declare module 'zero-element-antd/lib/container/Form/utils/useFormHandle' {
   export function useFormHandle(options: any): any;
+  export default function useFormHandle(options: any): any;
+}
+
+declare module 'umi' {
+  export interface history {
+    push(path: string): void;
+    goBack(): void;
+  }
+  const history: history;
+}
+
+declare module '*.less' {
+  const content: any;
+  export default content;
+}
+
+declare module '*.css' {
+  const content: any;
+  export default content;
 }

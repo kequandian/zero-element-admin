@@ -21,6 +21,9 @@ interface GlobalEffects {
   getPerm(): Record<string, boolean>;
 }
 
+// Create a model context type that combines state and effects for 'this' in effects
+type ModelContext = GlobalState & GlobalEffects;
+
 const sleep = (ms: number): Promise<void> => new Promise(res => setTimeout(() => res(), ms));
 
 createModel<GlobalState, GlobalEffects>({
@@ -31,16 +34,16 @@ createModel<GlobalState, GlobalEffects>({
   },
   effects: {
     setPerm(perm) {
-      this.permissions = formatPerms(perm);
+      (this as ModelContext).permissions = formatPerms(perm);
     },
     clearPerm() {
-      this.permissions = {};
+      (this as ModelContext).permissions = {};
     },
     setRequestCount(value: number) {
-      this.requestCount = value;
+      (this as ModelContext).requestCount = value;
     },
     getRequestCount(): number {
-      return this.requestCount;
+      return (this as ModelContext).requestCount;
     },
     async queryPerm() {
       if (getToken()) {
@@ -49,7 +52,7 @@ createModel<GlobalState, GlobalEffects>({
         } else if (process.env.NODE_ENV === 'production' && this.getRequestCount() >= 3) {
           return;
         }
-        if (!this.permissions || Array.isArray(this.permissions)) {
+        if (!(this as ModelContext).permissions || Array.isArray((this as ModelContext).permissions)) {
           query('/api/adm/users/self/permissions')
             .then(response => {
               if (response.status === 200) {
@@ -72,10 +75,10 @@ createModel<GlobalState, GlobalEffects>({
       }
     },
     getPerm(): Record<string, boolean> {
-      if (!this.permissions || Array.isArray(this.permissions)) {
+      if (!(this as ModelContext).permissions || Array.isArray((this as ModelContext).permissions)) {
         return {};
       }
-      return this.permissions;
+      return (this as ModelContext).permissions as Record<string, boolean>;
     }
   },
   useDefault: false,

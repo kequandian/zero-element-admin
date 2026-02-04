@@ -224,16 +224,16 @@ const FormTools = forwardRef<FormRef, FormToolsProps>((props, ref) => {
 
   // 选择项
   const selectEndpoint = (item: FieldConfig, i: number): React.ReactElement => {
-    return <>{item.mode === "multiple" ? (
-      <CheckboxGroup
-        defaultValue={getSelectData(item.field, item.defaultValue)}
-        style={{ width: "100%" }}
-        options={item.options as any[]}
-        onChange={(e) => handleSelect(item.field, e as any)}
-        key={`${i}_checkbox`}
-      ></CheckboxGroup>
-    )
-      : (
+    return <>
+      {item.mode === "multiple" ? (
+        <CheckboxGroup
+          defaultValue={getSelectData(item.field, item.defaultValue)}
+          style={{ width: "100%" }}
+          options={item.options as any[]}
+          onChange={(e) => handleSelect(item.field, e as any)}
+          key={`${i}_checkbox`}
+        ></CheckboxGroup>
+      ) : (
         <Select
           defaultValue={data && data[item.field] ? data[item.field] : getSelectData(item.field, item.defaultValue)}
           value={data && data[item.field] ? data[item.field] : getSelectData(item.field, item.defaultValue)}
@@ -243,7 +243,7 @@ const FormTools = forwardRef<FormRef, FormToolsProps>((props, ref) => {
           onChange={(e) => handleSelect(item.field, e as string)}
           key={`${i}_select`}
         />
-      )
+      )}
     </>
   }
 

@@ -1,10 +1,5 @@
 import apiSettings from './.setting/dataService-api';
 
-interface ConfigItem {
-  component: string;
-  config?: any;
-}
-
 interface TableAction {
   title: string;
   type: string;
@@ -21,6 +16,7 @@ interface TableOperation {
   title: string;
   type: string;
   options?: any;
+  expect?: any;
 }
 
 interface TableConfig {

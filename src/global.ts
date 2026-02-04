@@ -1,4 +1,3 @@
-import zeroAntd from './zero-antd-dep';
 import { getModel } from 'zero-element/lib/Model';
 
 import { set as golbalSet } from 'zero-element/lib/config/global';
@@ -52,8 +51,8 @@ export function setNavigate(nav: (path: string) => void) {
 }
 
 APIConfig({
-  'DEFAULT_current': 1,
-  'DEFAULT_pageSize': 10,
+  'DEFAULT_current': '1',
+  'DEFAULT_pageSize': '10',
 
   'REQUEST_FIELD_current': 'pageNum',
   'REQUEST_FIELD_pageSize': 'pageSize',
@@ -75,7 +74,7 @@ golbalSet({
   goBack: () => {
     router.goBack();
   },
-  Unauthorized: (data: any) => {
+  Unauthorized: (_data: any) => {
     removeToken();
     router.push('/401');
   },

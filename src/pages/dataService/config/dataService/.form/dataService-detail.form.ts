@@ -32,10 +32,6 @@ interface ChildrenFormField {
   type: string;
 }
 
-interface ChildrenFormConfig {
-  fields: ChildrenFormField[];
-}
-
 interface ActionItem {
   title: string;
   type: string;

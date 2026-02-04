@@ -14,6 +14,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      'zero-antd-dep': path.resolve(__dirname, './local/zero-element-antd/src'),
     },
   },
   server: {

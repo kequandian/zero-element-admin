@@ -379,7 +379,7 @@ function EditList(props: EditListProps): React.ReactElement {
                   okText="是"
                   cancelText="否"
                 >
-                  <div className={[styles.delGroup]}>
+                  <div className={styles.delGroup}>
                     <DeleteSvg />
                     删除
                   </div>

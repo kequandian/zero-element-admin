@@ -34,6 +34,11 @@ interface Setting {
   updateFields: Field[];
   map: Record<string, any>;
   layout: Layout;
+  searchFields?: Field[];
+  tableActions?: any[];
+  tableFields?: Field[];
+  tableOperation?: any[];
+  viewConfig?: Field[];
   // ... other properties
 }
 

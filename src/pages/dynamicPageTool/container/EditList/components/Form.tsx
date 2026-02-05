@@ -508,7 +508,7 @@ const FormTools = forwardRef<FormRef, FormToolsProps>((props, ref) => {
     // expect 为是否显示组件判断
     const { expect = {} } = item;
     if (JSON.stringify(expect) !== '{}') {
-      const { field: expectField, value: expectValue } = expect;
+      const { field: expectField, value: expectValue } = expect as { field: string; value: string };
       if (data[expectField] !== expectValue) {
         return null
       }
@@ -553,7 +553,7 @@ const FormTools = forwardRef<FormRef, FormToolsProps>((props, ref) => {
     {
       config && config.map((item, i) =>
         item.children ? <Collapse key={`${i}_collapse`}>
-          <Panel header={item.header}>
+          <Panel key={`${i}_panel`} header={item.header}>
             {item.children.map((child, a) => AllFormType(child, a))}
           </Panel>
         </Collapse> : AllFormType(item, i))

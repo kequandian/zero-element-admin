@@ -77,7 +77,7 @@ export default function Default(_props: DefaultProps): React.ReactElement {
   let id: string | undefined;
   const getParams = (): void => {
     var array = window.location.href.split("?");
-    if ((parseInt(array.length.toString()) - parseInt(1)) > 0) {
+    if ((array.length - 1) > 0) {
       var array1 = array[1].split("&");
       if (array1.length > 0) {
         //  console.log(array1)

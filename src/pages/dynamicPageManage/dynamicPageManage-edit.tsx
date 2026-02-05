@@ -136,7 +136,7 @@ export default function DynamicPageEdit(props: Record<string, any>): React.React
           // const Listdata = resp.data.records;
           // console.log(resp)
           message.success("更改成功")
-          history.goBack(1)
+          history.goBack()
           // setData(Listdata)
         } else {
           message.error('更改失败')
@@ -145,7 +145,7 @@ export default function DynamicPageEdit(props: Record<string, any>): React.React
   }
 
   const onClose = () => {
-    history.goBack(1)
+    history.goBack()
   };
 
   return <ShowModal title={"编辑页面"}

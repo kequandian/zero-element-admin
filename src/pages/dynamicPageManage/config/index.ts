@@ -26,8 +26,8 @@ interface ConfigItem {
 }
 
 const config: Config = {
-  layout: setting.layout.table,
-  title: setting.pageName.table,
+  layout: (setting as any).layout.table,
+  title: (setting as any).pageName.table,
   items: [
     // process.env.NODE_ENV === 'development' ?
     //   {
@@ -37,19 +37,19 @@ const config: Config = {
       component: 'Search',
       config: {
         type:"default",
-        fields: setting.searchFields,
+        fields: (setting as any).searchFields,
       },
     },
     {
       component: 'Table',
       config: {
         API: {
-          listAPI: setting.listAPI,
-          deleteAPI: setting.deleteAPI,
+          listAPI: (setting as any).listAPI,
+          deleteAPI: (setting as any).deleteAPI,
         },
-        actions: setting.tableActions,
-        fields: setting.tableFields,
-        operation: setting.tableOperation,
+        actions: (setting as any).tableActions,
+        fields: (setting as any).tableFields,
+        operation: (setting as any).tableOperation,
         props:{
           style:{
             "textAlign":"center"

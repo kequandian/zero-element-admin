@@ -85,7 +85,7 @@ const {
         // const Listdata = resp.data.records;
         // console.log(resp)
         message.success("添加成功")
-        history.goBack(1)
+        history.goBack()
         // setData(Listdata)
       } else {
         message.error('添加失败')
@@ -93,7 +93,7 @@ const {
     })
   }
   const onClose = () => {
-    history.goBack(1)
+    history.goBack()
   };
 return <ShowModal title={"添加页面"}
     // icon={<AddSvg/>}

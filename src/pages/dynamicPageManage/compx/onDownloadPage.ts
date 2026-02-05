@@ -75,7 +75,7 @@ export default function onDownloadPage(props: Props): void {
       })
   }
 
-  function handleDownloadPage(data: any): void {
+  function handleDownloadPage(data: any): Promise<void> {
     const cutString = data.createAPI
     const fileName = cutString.substring(cutString.lastIndexOf('/')+1, cutString.length)
     const apiUrl = `${getEndpoint()}/api/crud/lowMainPage/pageConfig/${fileName}`; //转换地址

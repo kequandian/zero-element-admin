@@ -172,7 +172,7 @@ function EditList(props: EditListProps): React.ReactElement {
         }
       }).catch(err => {
         message.error('获取页面配置信息失败 == ', err)
-      }).finally(_ => {
+      }).finally(() => {
         setLoading(false)
         // getListData()
       })
@@ -224,7 +224,7 @@ function EditList(props: EditListProps): React.ReactElement {
         } else {
           message.error('添加失败')
         }
-      }).finally(_ => {
+      }).finally(() => {
         setLoading(false)
         getListData()
       })
@@ -265,7 +265,7 @@ function EditList(props: EditListProps): React.ReactElement {
         } else {
           message.error('删除失败')
         }
-      }).finally(_ => {
+      }).finally(() => {
         setLoading(false)
         getListData()
       })
@@ -319,7 +319,7 @@ function EditList(props: EditListProps): React.ReactElement {
           message.error('更改失败')
         }
       })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false)
         getListData()
       })

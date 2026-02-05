@@ -36,3 +36,14 @@ export const SaveSvg = (props: SvgProps): React.ReactElement => {
   const { width = "16px", height = "16px", color = "#666" } = props
   return <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill={color}><path d="M832 64H192c-70.4 0-128 57.6-128 128v640c0 70.4 57.6 128 128 128h640c70.4 0 128-57.6 128-128V192c0-70.4-57.6-128-128-128z m64 768c0 35.2-28.8 64-64 64H192c-35.2 0-64-28.8-64-64V192c0-35.2 28.8-64 64-64h640c35.2 0 64 28.8 64 64v640z" fill="currentColor" p-id="5483"></path><path d="M704 352c0-19.2-12.8-32-32-32H352c-19.2 0-32 12.8-32 32s12.8 32 32 32h320c19.2 0 32-12.8 32-32zM640 512H384c-19.2 0-32 12.8-32 32s12.8 32 32 32h256c19.2 0 32-12.8 32-32s-12.8-32-32-32z" fill="currentColor" p-id="5484"></path></svg>
 }
+
+// Additional exports for component and add SVG
+export const ComponentSvg = (props: SvgProps): React.ReactElement => {
+  const { width = "16px", height = "16px", color = "#666" } = props
+  return <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill={color}><path d="M832 64H192c-70.4 0-128 57.6-128 128v640c0 70.4 57.6 128 128 128h640c70.4 0 128-57.6 128-128V192c0-70.4-57.6-128-128-128z" fill="currentColor"></path></svg>
+}
+
+export const AddSvg = (props: SvgProps): React.ReactElement => {
+  const { width = "16px", height = "16px", color = "#666" } = props
+  return <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill={color}><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m192 472c0 4.4-3.6 8-8 8h-176v176c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-176h-176c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8h176v-176c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v176h176c4.4 0 8 3.6 8 8v48z" fill="currentColor"></path></svg>
+}

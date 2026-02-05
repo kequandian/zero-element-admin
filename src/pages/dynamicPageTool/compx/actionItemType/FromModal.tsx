@@ -128,7 +128,7 @@ export default function FromModal(props: FromModalProps): React.ReactElement {
           message.error('添加失败')
         }
       })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false)
       })
   }

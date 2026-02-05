@@ -63,7 +63,8 @@ export default (props: Props): React.ReactElement => {
     namespace,
     modelPath: 'formData',
     extraData,
-  }, config);
+    config,
+  });
 
   const { data, model, handle } = formProps;
   const { onGetOne, onCreateForm, onUpdateForm, onClearForm } = handle;
@@ -72,13 +73,13 @@ export default (props: Props): React.ReactElement => {
 
   const [pageConfigData, setPageConfigData] = useState<string>('');
 
-  useDidMount(_ => {
+  useDidMount(() => {
     if (getAPI) {
       handleGetData()
     }
   });
 
-  useWillUnmount(_ => {
+  useWillUnmount(() => {
     // if (!keepData) {
   });
 
@@ -88,7 +89,7 @@ export default (props: Props): React.ReactElement => {
     onSaveOtherValue,
     onValuesChange,
     onExpect,
-  } = useFormHandle(form, {
+  } = useFormHandle({
     namespace,
     config,
     forceInitForm,
@@ -106,7 +107,7 @@ export default (props: Props): React.ReactElement => {
         getPageConfigData(data)
       }
     })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false);
       })
   }

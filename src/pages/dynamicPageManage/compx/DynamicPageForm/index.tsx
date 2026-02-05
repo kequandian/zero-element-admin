@@ -63,7 +63,7 @@ export default (props: Props): React.ReactElement => {
     onSaveOtherValue,
     onValuesChange,
     onExpect,
-  } = useFormHandle(form, {
+  } = useFormHandle({
     namespace,
     config,
     forceInitForm,
@@ -74,7 +74,8 @@ export default (props: Props): React.ReactElement => {
     namespace,
     modelPath: 'formData',
     extraData,
-  }, config);
+    config,
+  });
 
 
   const { data, model, handle } = formProps;
@@ -82,13 +83,13 @@ export default (props: Props): React.ReactElement => {
   const { onGetOne, onCreateForm, onUpdateForm, onClearForm } = handle;
   const [currentId, setCurrentId] = useState<string>('');
 
-  useDidMount(_ => {
+  useDidMount(() => {
     if (getAPI) {
       handleGetData()
     }
   });
 
-  useWillUnmount(_ => {
+  useWillUnmount(() => {
     // if (!keepData) {
     if (!keepData || MODAL) {
       onClearForm();
@@ -154,7 +155,7 @@ export default (props: Props): React.ReactElement => {
           message.error('添加失败')
         }
       })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false)
       })
   }
@@ -198,7 +199,7 @@ export default (props: Props): React.ReactElement => {
           message.error('修改失败')
         }
       })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false)
         if(onClose){
           //关闭modal方法
@@ -220,7 +221,7 @@ export default (props: Props): React.ReactElement => {
         setCurrentId(formData.id)
       }
     })
-      .finally(_ => {
+      .finally(() => {
         setLoading(false);
       })
   }

@@ -478,20 +478,20 @@ export const MainPageConfig: FieldConfig[] = [
     }
 ]
 // 组件类型，暂不用
-// export const ComponentTypeConfig = [
-//     { "label":"组件标识名称", "field":"fieldItemName" },
-//     { "label":"属性名称", "field":"propertyName" },
-//     { "label":"属性值", "field":"propertyValue" },
-//     { "label":"组件属性作用域", "field":"scope","type":"select","mode":"multiple","options":[
-//         {"label":"page","value":"page"},
-//         {"label":"filter","value":"filter"},
-//         {"label":"table","value":"table"},
-//         {"label":"edit","value":"edit"},
-//         {"label":"add","value":"add"},
-//         {"label":"view","value":"view"}
-//     ] },
-//     { "label":"所属字段组件ID", "field":"fieldId" },
-// ]
+export const ComponentTypeConfig: FieldConfig[] = [
+    { "label":"组件标识名称", "field":"fieldItemName" },
+    { "label":"属性名称", "field":"propertyName" },
+    { "label":"属性值", "field":"propertyValue" },
+    { "label":"组件属性作用域", "field":"scope","type":"select","mode":"multiple","options":[
+        {"label":"page","value":"page"},
+        {"label":"filter","value":"filter"},
+        {"label":"table","value":"table"},
+        {"label":"edit","value":"edit"},
+        {"label":"add","value":"add"},
+        {"label":"view","value":"view"}
+    ] },
+    { "label":"所属字段组件ID", "field":"fieldId" },
+]
 // 过滤字段（搜索）
 export const FiltersConfig: FieldConfig[] = [
     { "label": "搜索框内提示", "field": "defaultSearchHint", "defaultValue": "请输入..." },

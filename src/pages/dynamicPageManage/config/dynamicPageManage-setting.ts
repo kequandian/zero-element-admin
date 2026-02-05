@@ -15,11 +15,13 @@ interface Layout {
 interface Field {
   label: string;
   field: string;
+  title?: string;
   type?: string;
   rules?: Array<{ type: string }>;
   props?: Record<string, any>;
   defaultValue?: any;
   options?: Array<{ label: string; value: string }>;
+  fields?: Field[];
 }
 
 interface Setting {
@@ -591,6 +593,8 @@ export const setting: Setting = {
   ],
   "viewConfig": [
     {
+      "label": "详情",
+      "field": "detail",
       "title": "详情",
       "type": "plain",
       "fields": [

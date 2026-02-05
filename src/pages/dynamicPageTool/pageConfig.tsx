@@ -48,7 +48,7 @@ export const fieldsConfig: FieldConfig[] = [
             "label": "fieldItemName",
             "value": "fieldItemName",
             "dataField": "data.lowFieldss"
-        }
+        } as any
     },
     {
         "label": "展示范围", "field": "fieldScopes", "type": "select", "mode": "multiple", "options": [
@@ -72,6 +72,7 @@ export const fieldsConfig: FieldConfig[] = [
 
     {
         "header": "列表设置",
+        "field": "",
         "children": [
             {
                 "label": "列表项组件类型",
@@ -134,10 +135,10 @@ export const fieldsConfig: FieldConfig[] = [
                 "field": "listFontSize",
                 "type": "text",
                 "options": [
-                    { "value": "10" },
-                    { "value": "15" },
-                    { "value": "20" },
-                    { "value": "25" }
+                    { "value": "10" } as any,
+                    { "value": "15" } as any,
+                    { "value": "20" } as any,
+                    { "value": "25" } as any
                 ]
             },
             {
@@ -200,6 +201,7 @@ export const fieldsConfig: FieldConfig[] = [
     },
     {
         "header": "表单设置",
+        "field": "",
         "children": [
             {
                 "label": "表单输入组件",
@@ -416,7 +418,7 @@ export const MainPageConfig: FieldConfig[] = [
     },
     { "label": "数据接口", "field": "apiEndpoint", "defaultValue": "" },
     {
-        "header": "高级设置", "children": [
+        "header": "高级设置", "field": "", "children": [
             {
                 "label": "页面内容布局", "field": "contentLayout", "type": "select",
                 "defaultValue": "Content",
@@ -498,10 +500,10 @@ export const FiltersConfig: FieldConfig[] = [
     { "label": "绑定字段名称", "field": "fieldName", "defaultValue": "field" },
     { "label": "搜索标题", "field": "fieldTitle", "defaultValue": "标题1" },
     {
-        "header": "高级设置", "children": [
+        "header": "高级设置", "field": "", "children": [
             {
                 "label": "组件类型",
-                "toolTips": true,
+                "toolTips": true as any,
                 "field": "fieldType", "type": "select",
                 "options": [
 
@@ -581,7 +583,7 @@ export const FiltersConfig: FieldConfig[] = [
 export const ActionsConfig: FieldConfig[] = [
     { "label": "标题", "field": "title", "defaultValue": "新增" },
     {
-        "header": "高级设置", "children": [
+        "header": "高级设置", "field": "", "children": [
             {
                 "label": "操作类型", "field": "type", "type": "select", "options": [
                     { "label": "path", "value": "path" },
@@ -675,7 +677,7 @@ export const ActionsConfig: FieldConfig[] = [
 export const OperationsConfig: FieldConfig[] = [
     { "label": "标题", "field": "title", "defaultValue": "编辑" },
     {
-        "header": "高级设置", "children": [
+        "header": "高级设置", "field": "", "children": [
             {
                 "label": "操作类型", "field": "type", "type": "select", "options": [
                     { "label": "path", "value": "path" },

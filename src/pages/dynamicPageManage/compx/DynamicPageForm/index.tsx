@@ -249,7 +249,7 @@ export default (props: Props): React.ReactElement => {
     <div style={{ margin: '20px'}}>
           <FormTools
               formData={data}
-              config={fields}
+              config={fields as any}
               ref={addRef}
               unUseDefaultValue={true}
               >

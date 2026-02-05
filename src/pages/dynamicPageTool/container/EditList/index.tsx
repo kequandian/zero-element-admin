@@ -16,7 +16,7 @@ import FormTools from './components/Form';
 
 import handleFormData from './utils/cleanFormRateData'
 
-import styles from './index.less';
+import './index.less';
 
 // Remove umi imports
 // import { withRouter, history } from 'umi';
@@ -356,7 +356,7 @@ function EditList(props: EditListProps): React.ReactElement {
       {data ? Array.isArray(data) ? (
         <Spin spinning={loading}>
           {data.map((item: any, i: number) => (
-            <div className={styles.listItem} key={`list_key_${i}`}>
+            <div className="listItem" key={`list_key_${i}`}>
               <ShowModal title={_.get(item, title) || "组件无名称"}
                 titleLabel={title}
                 field={_.get(item, field) || "空"}
@@ -379,7 +379,7 @@ function EditList(props: EditListProps): React.ReactElement {
                   okText="是"
                   cancelText="否"
                 >
-                  <div className={styles.delGroup}>
+                  <div className="delGroup">
                     <DeleteSvg />
                     删除
                   </div>

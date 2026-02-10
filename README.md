@@ -20,6 +20,32 @@ $ npm config set registry https://registry.npm.taobao.org
 $ npm i
 ```
 
+### 如何安装 dynamic-page-builder 作为本地依赖
+
+在其他项目中使用本地的 `dynamic-page-builder`：
+
+```shell
+# 1. 构建本地库
+npm run build:lib
+
+# 2. 在目标项目中安装（假设两个项目在同级目录）
+cd /path/to/your/project
+npm install ../zero-element-admin
+
+# 或使用相对路径
+npm install ../dynamic-page-builder
+```
+
+或在 `package.json` 中直接指定：
+
+```json
+{
+  "dependencies": {
+    "dynamic-page-builder": "file:../zero-element-admin"
+  }
+}
+```
+
 ## 以开发环境运行
 ```shell
 npm start

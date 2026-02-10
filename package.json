@@ -1,8 +1,21 @@
 {
-  "private": true,
+  "name": "dynamic-page-builder",
+  "version": "1.0.0",
+  "private": false,
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "dev": "node init.js && vite",
     "build": "node init.js && vite build",
+    "build:lib": "vite build --mode lib && tsc -p tsconfig.lib.json && rm -f lib/color.less lib/config.js",
+    "prepublishOnly": "npm run build:lib",
+    "pack": "npm run build:lib && npm pack",
     "preview": "vite preview",
     "type-check": "tsc --noEmit"
   },
@@ -18,7 +31,16 @@
     "react-router-dom": "^6.20.0",
     "react-simple-verify": "^1.0.8",
     "zero-element": "^1.0.0",
-    "zero-element-antd": "./local/zero-element-antd"
+    "zero-element-antd": "^1.0.0"
+  },
+  "peerDependencies": {
+    "antd": "^5.12.0",
+    "lodash": "^4.17.21",
+    "qs": "^6.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zero-element": "^1.0.0",
+    "zero-element-antd": "^1.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.200",
@@ -29,7 +51,8 @@
     "cross-env": "^7.0.3",
     "less": "^4.1.3",
     "typescript": "^5.3.0",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^4.5.4"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -9,6 +9,7 @@
 
 # production
 /dist
+/lib
 /zero-antd-dep
 /libs/schema-generator/node_modules
 dist.rar
@@ -23,6 +24,7 @@ dist.rar
 
 # misc
 .DS_Store
+._*
 
 # umi
 .umi
